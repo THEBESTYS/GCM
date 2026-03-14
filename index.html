@@ -39,7 +39,9 @@
             --accent-purple-glow: rgba(157,78,221,0.3);
             --accent-blue: #4361ee;
             --danger: #ff4d6d;
+            --danger-glow: rgba(255,77,109,0.3);
             --success: #4cc9f0;
+            --warning: #f9c74f;
             --font-display: 'Cormorant Garamond', serif;
             --font-body: 'Montserrat', sans-serif;
             --container: 1400px;
@@ -232,7 +234,7 @@
             top: 0;
             right: -100%;
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             height: 100vh;
             background: rgba(10,10,10,0.97);
             backdrop-filter: blur(40px);
@@ -340,18 +342,45 @@
             transition: all 0.3s;
             border: none;
             text-decoration: none;
-            width: 100%;
             text-transform: uppercase;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
             color: var(--text);
+            width: 100%;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 40px var(--accent-purple-glow);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #ff8c42);
+            color: var(--text);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--danger-glow);
+        }
+
+        .btn-outline-danger {
+            background: transparent;
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+        .btn-outline-danger:hover {
+            background: var(--danger);
+            color: var(--text);
+            box-shadow: 0 0 30px var(--danger-glow);
+        }
+
+        .btn-small {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.7rem;
         }
 
         /* Admin Dashboard */
@@ -531,6 +560,89 @@
             margin-bottom: 1.8rem;
         }
 
+        /* Video Management Section */
+        .video-management {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .video-management-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .video-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .video-list-item:hover {
+            border-color: var(--danger);
+            background: rgba(255,77,109,0.05);
+        }
+
+        .video-item-info {
+            flex: 1;
+        }
+
+        .video-item-title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+
+        .video-item-meta {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .delete-video-btn {
+            background: transparent;
+            border: 1px solid var(--danger);
+            border-radius: 6px;
+            color: var(--danger);
+            padding: 0.5rem 1rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .delete-video-btn:hover {
+            background: var(--danger);
+            color: var(--text);
+            box-shadow: 0 0 20px var(--danger-glow);
+        }
+
         /* Video Grid */
         .video-grid {
             display: grid;
@@ -553,6 +665,10 @@
             transform: translateY(-12px);
             border-color: var(--accent-purple);
             box-shadow: 0 30px 50px rgba(157,78,221,0.2);
+        }
+
+        .video-card.admin-view {
+            border-color: var(--danger);
         }
 
         .video-wrapper {
@@ -633,6 +749,18 @@
         .video-btn.play:hover {
             background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
             border-color: transparent;
+        }
+
+        .video-btn.delete {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .video-btn.delete:hover {
+            background: var(--danger);
+            color: var(--text);
+            border-color: transparent;
+            box-shadow: 0 0 20px var(--danger-glow);
         }
 
         /* Hero Section */
@@ -785,7 +913,7 @@
 
         .modal-content {
             width: 90%;
-            max-width: 1000px;
+            max-width: 500px;
             background: var(--glass-heavy);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
@@ -804,7 +932,7 @@
             font-family: var(--font-display);
             font-size: 1.5rem;
             font-weight: 300;
-            color: var(--accent-purple);
+            color: var(--danger);
         }
 
         .modal-close {
@@ -819,18 +947,29 @@
         }
 
         .modal-close:hover {
-            color: var(--accent-purple);
+            color: var(--danger);
             transform: rotate(90deg);
         }
 
         .modal-body {
             padding: 2rem;
+            text-align: center;
         }
 
-        .modal-video video {
-            width: 100%;
-            max-height: 70vh;
-            border-radius: 12px;
+        .modal-body p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .modal-actions .btn {
+            flex: 1;
         }
 
         /* Bible Verse */
@@ -910,6 +1049,45 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 20001;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            color: var(--text);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-color: var(--success);
+            box-shadow: 0 0 20px rgba(76,201,240,0.2);
+        }
+
+        .toast.error {
+            border-color: var(--danger);
+            box-shadow: 0 0 20px var(--danger-glow);
+        }
+
+        .toast.warning {
+            border-color: var(--warning);
+            box-shadow: 0 0 20px rgba(249,199,79,0.2);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav__links {
@@ -935,6 +1113,10 @@
             
             .verse-card {
                 padding: 2rem;
+            }
+
+            .modal-actions {
+                flex-direction: column;
             }
         }
 
@@ -966,6 +1148,12 @@
     
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="iconify" data-icon="solar:check-circle-bold" data-width="20" style="color: var(--success);"></span>
+        <span id="toastMessage">Notification</span>
+    </div>
 
     <!-- Admin Login Button (Purple) -->
     <button class="admin-login-btn" id="adminLoginBtn">
@@ -1025,6 +1213,17 @@
                 <canvas id="memberChart"></canvas>
             </div>
 
+            <!-- Video Management Section (New) -->
+            <div class="video-management">
+                <h3 class="video-management-title">
+                    <span class="iconify" data-icon="solar:videocamera-record-bold" data-width="18"></span>
+                    Video Management
+                </h3>
+                <div class="video-list" id="videoList">
+                    <!-- Videos will be loaded here dynamically -->
+                </div>
+            </div>
+
             <!-- Member Management -->
             <div class="members-section">
                 <h3 class="members-title">Member Management</h3>
@@ -1070,11 +1269,13 @@
                     <div class="form-group">
                         <label class="form-label">Language</label>
                         <select class="form-input" id="videoLanguage" required>
-                            <option value="en">English</option>
-                            <option value="ko">Korean</option>
-                            <option value="zh">Chinese</option>
-                            <option value="es">Spanish</option>
-                            <option value="ja">Japanese</option>
+                            <option value="English">English</option>
+                            <option value="Korean">Korean</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Spanish">Spanish</option>
+                            <option value="Japanese">Japanese</option>
+                            <option value="French">French</option>
+                            <option value="German">German</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1086,6 +1287,23 @@
                         Upload Video
                     </button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Delete Video</h3>
+                <button class="modal-close" id="closeDeleteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete <strong id="deleteVideoTitle"></strong>? This action cannot be undone.</p>
+                <div class="modal-actions">
+                    <button class="btn btn-outline-danger" id="cancelDelete">Cancel</button>
+                    <button class="btn btn-danger" id="confirmDelete">Delete</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1225,6 +1443,32 @@
             adminPanel.classList.remove('active');
         });
 
+        // Toast Notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const icon = toast.querySelector('.iconify');
+            
+            toastMessage.textContent = message;
+            toast.className = 'toast';
+            toast.classList.add('show', type);
+            
+            if (type === 'success') {
+                icon.setAttribute('data-icon', 'solar:check-circle-bold');
+                icon.style.color = 'var(--success)';
+            } else if (type === 'error') {
+                icon.setAttribute('data-icon', 'solar:close-circle-bold');
+                icon.style.color = 'var(--danger)';
+            } else if (type === 'warning') {
+                icon.setAttribute('data-icon', 'solar:bell-bold');
+                icon.style.color = 'var(--warning)';
+            }
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
         // Login Function with Authentication
         const loginBtn = document.getElementById('loginBtn');
         const loginForm = document.getElementById('loginForm');
@@ -1241,6 +1485,7 @@
                 adminDashboard.classList.add('active');
                 loginError.style.display = 'none';
                 loadAdminData();
+                loadVideoManagement();
                 
                 // Animate dashboard entrance
                 gsap.from('.admin-dashboard > *', {
@@ -1316,6 +1561,81 @@
             const languages = new Set(videos.map(v => v.language));
             document.getElementById('totalLanguages').textContent = languages.size;
         }
+
+        // Load Video Management List
+        function loadVideoManagement() {
+            const videoList = document.getElementById('videoList');
+            videoList.innerHTML = '';
+
+            videos.forEach((video, index) => {
+                const item = document.createElement('div');
+                item.className = 'video-list-item';
+                item.innerHTML = `
+                    <div class="video-item-info">
+                        <div class="video-item-title">${video.title}</div>
+                        <div class="video-item-meta">
+                            <span>${video.language}</span>
+                            <span>${video.date}</span>
+                        </div>
+                    </div>
+                    <button class="delete-video-btn" onclick="openDeleteModal(${index})">
+                        <span class="iconify" data-icon="solar:trash-bin-minimalistic-bold" data-width="14"></span>
+                        Delete
+                    </button>
+                `;
+                videoList.appendChild(item);
+            });
+        }
+
+        // Delete Video Functionality
+        let videoToDelete = null;
+
+        function openDeleteModal(index) {
+            videoToDelete = index;
+            const video = videos[index];
+            document.getElementById('deleteVideoTitle').textContent = video.title;
+            document.getElementById('deleteModal').classList.add('active');
+        }
+
+        document.getElementById('closeDeleteModal').addEventListener('click', () => {
+            document.getElementById('deleteModal').classList.remove('active');
+            videoToDelete = null;
+        });
+
+        document.getElementById('cancelDelete').addEventListener('click', () => {
+            document.getElementById('deleteModal').classList.remove('active');
+            videoToDelete = null;
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', () => {
+            if (videoToDelete !== null) {
+                // Remove video from array
+                videos.splice(videoToDelete, 1);
+                
+                // Update localStorage
+                localStorage.setItem('gcmVideos', JSON.stringify(videos));
+                
+                // Refresh displays
+                displayVideos();
+                loadVideoManagement();
+                loadStats();
+                
+                // Close modal
+                document.getElementById('deleteModal').classList.remove('active');
+                videoToDelete = null;
+                
+                // Show success message
+                showToast('Video deleted successfully', 'success');
+            }
+        });
+
+        // Click outside modal to close
+        document.getElementById('deleteModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('deleteModal')) {
+                document.getElementById('deleteModal').classList.remove('active');
+                videoToDelete = null;
+            }
+        });
 
         // Search Function
         document.getElementById('searchBtn').addEventListener('click', () => {
@@ -1488,9 +1808,34 @@
                 localStorage.setItem('gcmVideos', JSON.stringify(videos));
             }
 
+            // Check if admin is logged in to show delete buttons
+            const isAdmin = adminDashboard.classList.contains('active');
+
             videos.forEach((video, index) => {
                 const card = document.createElement('div');
-                card.className = 'video-card';
+                card.className = `video-card ${isAdmin ? 'admin-view' : ''}`;
+                
+                let actions = `
+                    <button class="video-btn play" onclick="playVideo(${index})">
+                        <span class="iconify" data-icon="solar:play-linear" data-width="12"></span>
+                        Play
+                    </button>
+                    <a href="${video.url}" download class="video-btn">
+                        <span class="iconify" data-icon="solar:download-linear" data-width="12"></span>
+                        Download
+                    </a>
+                `;
+
+                // Add delete button for admin
+                if (isAdmin) {
+                    actions += `
+                        <button class="video-btn delete" onclick="openDeleteModal(${index})">
+                            <span class="iconify" data-icon="solar:trash-bin-minimalistic-bold" data-width="12"></span>
+                            Delete
+                        </button>
+                    `;
+                }
+
                 card.innerHTML = `
                     <div class="video-wrapper">
                         <video src="${video.url}" preload="metadata"></video>
@@ -1502,14 +1847,7 @@
                             <span>${video.date}</span>
                         </div>
                         <div class="video-actions">
-                            <button class="video-btn play" onclick="playVideo(${index})">
-                                <span class="iconify" data-icon="solar:play-linear" data-width="12"></span>
-                                Play
-                            </button>
-                            <a href="${video.url}" download class="video-btn">
-                                <span class="iconify" data-icon="solar:download-linear" data-width="12"></span>
-                                Download
-                            </a>
+                            ${actions}
                         </div>
                     </div>
                 `;
@@ -1581,15 +1919,11 @@
             localStorage.setItem('gcmVideos', JSON.stringify(videos));
             
             displayVideos();
+            loadVideoManagement();
             document.getElementById('uploadForm').reset();
             
             // Show success message
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="iconify" data-icon="solar:check-circle-bold" data-width="16"></span> Uploaded!';
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-            }, 2000);
+            showToast('Video uploaded successfully!', 'success');
             
             if (adminDashboard.classList.contains('active')) {
                 loadStats();
