@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GCM - 글로벌 크리스천 뮤직 | Global Christian Music</title>
+    <title>GCM — Global Christian Music</title>
     
-    <!-- Fonts -->
+    <!-- Elegant Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Iconify -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
@@ -26,22 +26,22 @@
     <style>
         :root {
             --bg: #0a0a0a;
-            --bg-alt: #111111;
+            --bg-alt: #141414;
             --glass: rgba(255,255,255,0.02);
             --glass-border: rgba(255,255,255,0.05);
             --glass-heavy: rgba(255,255,255,0.08);
             --text: #ffffff;
-            --text-muted: #a0a0a0;
-            --text-dim: #505050;
-            --accent: #c8ff00;
-            --accent-glow: rgba(200,255,0,0.3);
+            --text-muted: #b0b0b0;
+            --text-dim: #606060;
+            --accent: #d4af37;
+            --accent-glow: rgba(212,175,55,0.3);
             --accent-purple: #9d4edd;
             --accent-purple-glow: rgba(157,78,221,0.3);
             --accent-blue: #4361ee;
             --danger: #ff4d6d;
             --success: #4cc9f0;
-            --font-display: 'Syne', sans-serif;
-            --font-body: 'Space Grotesk', sans-serif;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
             --container: 1400px;
         }
 
@@ -57,6 +57,14 @@
             color: var(--text);
             overflow-x: hidden;
             position: relative;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            letter-spacing: 0.02em;
         }
 
         /* 3D Canvas Container */
@@ -88,7 +96,7 @@
             top: 0;
             left: 0;
             z-index: 9999;
-            height: 2px;
+            height: 1px;
             background: linear-gradient(90deg, var(--accent), var(--accent-purple));
             width: 100%;
             transform-origin: left;
@@ -105,7 +113,7 @@
         .container {
             max-width: var(--container);
             margin: 0 auto;
-            padding: 0 clamp(1.5rem, 4vw, 3rem);
+            padding: 0 clamp(2rem, 5vw, 4rem);
         }
 
         /* Navigation */
@@ -118,8 +126,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.5rem clamp(1.5rem, 4vw, 3rem);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem clamp(2rem, 5vw, 4rem);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            mix-blend-mode: difference;
         }
 
         .nav.scrolled {
@@ -127,32 +136,45 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
+            mix-blend-mode: normal;
         }
 
         .nav__logo {
             font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: 0.2em;
-            background: linear-gradient(135deg, var(--text) 0%, var(--accent-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px var(--accent-purple-glow);
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: var(--text);
+            text-decoration: none;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .nav__logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
         }
 
         .nav__links {
             display: flex;
-            gap: 3rem;
+            gap: 3.5rem;
         }
 
         .nav__links a {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
             color: var(--text-muted);
             text-decoration: none;
             transition: all 0.3s;
             position: relative;
+            text-transform: uppercase;
         }
 
         .nav__links a:hover {
@@ -167,7 +189,7 @@
             width: 0;
             height: 1px;
             background: linear-gradient(90deg, var(--accent), var(--accent-purple));
-            transition: width 0.3s;
+            transition: width 0.4s ease;
         }
 
         .nav__links a:hover::after {
@@ -191,17 +213,17 @@
             justify-content: center;
             transition: all 0.3s;
             box-shadow: 0 0 30px var(--accent-purple-glow);
-            animation: pulse 2s infinite;
+            animation: pulse 3s infinite;
         }
 
         .admin-login-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 50px var(--accent-purple-glow);
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: 0 0 60px var(--accent-purple-glow);
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
         }
 
         /* Admin Panel */
@@ -212,14 +234,14 @@
             width: 100%;
             max-width: 600px;
             height: 100vh;
-            background: rgba(10,10,10,0.95);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            background: rgba(10,10,10,0.97);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
             z-index: 10000;
-            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: right 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             border-left: 1px solid var(--glass-border);
             overflow-y: auto;
-            padding: 2rem;
+            padding: 2.5rem;
         }
 
         .admin-panel.active {
@@ -230,14 +252,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
             border-bottom: 1px solid var(--glass-border);
         }
 
         .admin-title {
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 300;
             background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -247,71 +270,78 @@
             background: none;
             border: none;
             color: var(--text-muted);
-            font-size: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-family: var(--font-display);
+            line-height: 1;
         }
 
         .admin-close:hover {
             color: var(--accent-purple);
+            transform: rotate(90deg);
         }
 
         /* Login Form */
         .login-form {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 2.5rem;
             margin-bottom: 2rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .form-label {
             display: block;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             margin-bottom: 0.5rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
+            font-weight: 300;
         }
 
         .form-input {
             width: 100%;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             border: 1px solid var(--glass-border);
             border-radius: 8px;
-            padding: 0.8rem 1rem;
+            padding: 1rem 1.2rem;
             color: var(--text);
             font-family: var(--font-body);
             font-size: 0.9rem;
             transition: all 0.3s;
+            font-weight: 300;
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--accent-purple);
-            box-shadow: 0 0 20px var(--accent-purple-glow);
+            box-shadow: 0 0 30px var(--accent-purple-glow);
+            background: rgba(255,255,255,0.05);
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.8rem;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
             border-radius: 50px;
-            font-family: var(--font-display);
+            font-family: var(--font-body);
             font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
+            font-weight: 300;
+            letter-spacing: 0.15em;
             cursor: pointer;
             transition: all 0.3s;
             border: none;
             text-decoration: none;
             width: 100%;
+            text-transform: uppercase;
         }
 
         .btn-primary {
@@ -321,7 +351,7 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px var(--accent-purple-glow);
+            box-shadow: 0 0 40px var(--accent-purple-glow);
         }
 
         /* Admin Dashboard */
@@ -336,27 +366,28 @@
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
         }
 
         .stat-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 1.2rem;
-            transition: all 0.3s;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.4s;
         }
 
         .stat-card:hover {
             border-color: var(--accent-purple);
-            transform: translateY(-2px);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(157,78,221,0.1);
         }
 
         .stat-value {
             font-family: var(--font-display);
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-size: 2.2rem;
+            font-weight: 300;
             color: var(--accent-purple);
             margin-bottom: 0.3rem;
         }
@@ -364,19 +395,37 @@
         .stat-label {
             font-size: 0.7rem;
             color: var(--text-muted);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 300;
         }
 
         /* Chart Container */
         .chart-container {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 2.5rem;
         }
 
         /* Members Table */
+        .members-section {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .members-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+        }
+
         .members-table {
             width: 100%;
             border-collapse: collapse;
@@ -387,16 +436,18 @@
             text-align: left;
             padding: 1rem 0.5rem;
             color: var(--accent-purple);
-            font-weight: 600;
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
             border-bottom: 1px solid var(--glass-border);
+            text-transform: uppercase;
         }
 
         .members-table td {
             padding: 1rem 0.5rem;
             border-bottom: 1px solid var(--glass-border);
             color: var(--text-muted);
+            font-weight: 300;
         }
 
         .members-table tr:hover td {
@@ -406,25 +457,26 @@
 
         .search-bar {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.8rem;
             margin-bottom: 1.5rem;
         }
 
         .search-input {
             flex: 1;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.03);
             border: 1px solid var(--glass-border);
             border-radius: 8px;
-            padding: 0.8rem 1rem;
+            padding: 0.9rem 1.2rem;
             color: var(--text);
             font-family: var(--font-body);
+            font-weight: 300;
         }
 
         .search-btn {
             background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
             border: none;
             border-radius: 8px;
-            padding: 0 1.2rem;
+            padding: 0 1.5rem;
             color: var(--text);
             cursor: pointer;
             transition: all 0.3s;
@@ -432,71 +484,82 @@
 
         .search-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 20px var(--accent-purple-glow);
+            box-shadow: 0 0 30px var(--accent-purple-glow);
         }
 
         .download-btn {
             background: transparent;
             border: 1px solid var(--glass-border);
             border-radius: 8px;
-            padding: 0.8rem 1.2rem;
+            padding: 1rem 1.5rem;
             color: var(--text-muted);
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            width: 100%;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
         }
 
         .download-btn:hover {
             border-color: var(--accent-purple);
             color: var(--text);
+            background: rgba(157,78,221,0.05);
         }
 
         /* Upload Section */
         .upload-section {
-            background: var(--glass);
+            background: linear-gradient(135deg, rgba(157,78,221,0.05), rgba(67,97,238,0.05));
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2rem;
             margin-top: 2rem;
         }
 
         .upload-title {
             font-family: var(--font-display);
-            font-size: 1.1rem;
+            font-size: 1.3rem;
+            font-weight: 300;
             color: var(--accent-purple);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         /* Video Grid */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
         }
 
         .video-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            transition: all 0.4s;
+            transition: all 0.5s;
             position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .video-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-12px);
             border-color: var(--accent-purple);
-            box-shadow: 0 20px 40px rgba(157,78,221,0.2);
+            box-shadow: 0 30px 50px rgba(157,78,221,0.2);
         }
 
         .video-wrapper {
             position: relative;
             padding-top: 56.25%;
             background: linear-gradient(135deg, var(--bg-alt), var(--bg));
+            overflow: hidden;
         }
 
         .video-wrapper video {
@@ -506,36 +569,43 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .video-card:hover .video-wrapper video {
+            transform: scale(1.05);
         }
 
         .video-info {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
 
         .video-title {
             font-family: var(--font-display);
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            font-weight: 400;
             color: var(--text);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .video-meta {
             font-size: 0.7rem;
             color: var(--text-muted);
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
         }
 
         .video-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .video-btn {
             flex: 1;
-            padding: 0.6rem;
+            padding: 0.8rem;
             background: transparent;
             border: 1px solid var(--glass-border);
             border-radius: 6px;
@@ -548,12 +618,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.3rem;
+            gap: 0.4rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .video-btn:hover {
             border-color: var(--accent-purple);
             color: var(--text);
+            background: rgba(157,78,221,0.1);
         }
 
         .video-btn.play:hover {
@@ -577,76 +651,85 @@
         }
 
         .hero__tag {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.3em;
+            font-size: 0.7rem;
+            font-weight: 300;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: var(--accent-purple);
+            color: var(--accent);
             margin-bottom: 2rem;
-            padding: 0.5rem 1.2rem;
+            padding: 0.6rem 1.5rem;
             border-radius: 50px;
-            background: rgba(157,78,221,0.1);
-            border: 1px solid rgba(157,78,221,0.2);
+            background: rgba(212,175,55,0.05);
+            border: 1px solid rgba(212,175,55,0.1);
             backdrop-filter: blur(10px);
             display: inline-block;
         }
 
         .hero__title {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 800;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 300;
             line-height: 1.1;
             margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--text) 0%, var(--accent-purple) 50%, var(--accent-blue) 100%);
+            letter-spacing: -0.02em;
+        }
+
+        .hero__title span {
+            display: block;
+            font-style: italic;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent) 50%, var(--accent-purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero__sub {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
             color: var(--text-muted);
             max-width: 700px;
             margin: 0 auto;
             line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 0.02em;
         }
 
         /* Section Styles */
         .section {
-            padding: clamp(5rem, 10vw, 8rem) 0;
+            padding: clamp(6rem, 12vw, 10rem) 0;
         }
 
         .section-tag {
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.3em;
+            font-size: 0.65rem;
+            font-weight: 300;
+            letter-spacing: 0.4em;
             text-transform: uppercase;
-            color: var(--accent-purple);
+            color: var(--accent);
             display: flex;
             align-items: center;
-            gap: 0.7rem;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .section-tag::before {
             content: '';
-            width: 30px;
+            width: 40px;
             height: 1px;
-            background: linear-gradient(90deg, var(--accent-purple), transparent);
+            background: linear-gradient(90deg, var(--accent), transparent);
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 2rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 3rem;
             line-height: 1.2;
+            letter-spacing: -0.01em;
         }
 
         /* Footer */
         .footer {
             background: var(--bg-alt);
             border-top: 1px solid var(--glass-border);
-            padding: 4rem 0 2rem;
+            padding: 5rem 0 2.5rem;
             position: relative;
             z-index: 1;
         }
@@ -654,29 +737,31 @@
         .footer__inner {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
         .footer__logo {
             font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: 0.2em;
-            background: linear-gradient(135deg, var(--text), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.4rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: var(--text);
+            text-transform: uppercase;
         }
 
         .footer__bottom {
             display: flex;
             justify-content: space-between;
-            margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid var(--glass-border);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-dim);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         /* Modal */
@@ -688,8 +773,8 @@
             width: 100%;
             height: 100%;
             z-index: 20000;
-            background: rgba(10,10,10,0.95);
-            backdrop-filter: blur(30px);
+            background: rgba(10,10,10,0.98);
+            backdrop-filter: blur(50px);
             align-items: center;
             justify-content: center;
         }
@@ -700,15 +785,15 @@
 
         .modal-content {
             width: 90%;
-            max-width: 900px;
+            max-width: 1000px;
             background: var(--glass-heavy);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
+            border-radius: 24px;
             overflow: hidden;
         }
 
         .modal-header {
-            padding: 1.5rem;
+            padding: 2rem;
             border-bottom: 1px solid var(--glass-border);
             display: flex;
             justify-content: space-between;
@@ -717,7 +802,8 @@
 
         .modal-title {
             font-family: var(--font-display);
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            font-weight: 300;
             color: var(--accent-purple);
         }
 
@@ -725,9 +811,11 @@
             background: none;
             border: none;
             color: var(--text-muted);
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: var(--font-display);
+            line-height: 1;
         }
 
         .modal-close:hover {
@@ -736,13 +824,90 @@
         }
 
         .modal-body {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
         .modal-video video {
             width: 100%;
             max-height: 70vh;
-            border-radius: 8px;
+            border-radius: 12px;
+        }
+
+        /* Bible Verse */
+        .verse-card {
+            background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(157,78,221,0.05));
+            border: 1px solid rgba(212,175,55,0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .verse-card::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-size: 10rem;
+            color: var(--accent);
+            opacity: 0.1;
+            font-family: var(--font-display);
+        }
+
+        .verse-text {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            line-height: 1.5;
+            color: var(--text);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .verse-ref {
+            color: var(--accent);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.5s;
+        }
+
+        .loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--glass-border);
+            border-top-color: var(--accent);
+            border-right-color: var(--accent-purple);
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Responsive */
@@ -760,97 +925,30 @@
                 grid-template-columns: 1fr;
             }
             
-            .members-table {
-                font-size: 0.75rem;
+            .hero__title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
             }
             
-            .members-table th,
-            .members-table td {
-                padding: 0.8rem 0.3rem;
+            .verse-text {
+                font-size: 1.3rem;
+            }
+            
+            .verse-card {
+                padding: 2rem;
             }
         }
 
         @media (max-width: 480px) {
-            .hero__title {
-                font-size: clamp(2rem, 6vw, 3rem);
-            }
-            
             .admin-login-btn {
                 width: 40px;
                 height: 40px;
                 bottom: 1rem;
                 left: 1rem;
             }
-        }
-
-        /* Loading Animation */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 1s;
-        }
-
-        .loading.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 2px solid var(--glass-border);
-            border-top-color: var(--accent-purple);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Bible Verse */
-        .verse-card {
-            background: linear-gradient(135deg, rgba(157,78,221,0.1), rgba(67,97,238,0.1));
-            border: 1px solid rgba(157,78,221,0.2);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 3rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .verse-card::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 10px;
-            font-size: 8rem;
-            color: var(--accent-purple);
-            opacity: 0.1;
-            font-family: serif;
-        }
-
-        .verse-text {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--text);
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .verse-ref {
-            color: var(--accent-purple);
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
+            
+            .section-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -871,30 +969,33 @@
 
     <!-- Admin Login Button (Purple) -->
     <button class="admin-login-btn" id="adminLoginBtn">
-        <span class="iconify" data-icon="solar:user-id-bold" data-width="24" data-height="24" style="color: white;"></span>
+        <span class="iconify" data-icon="solar:user-id-bold" data-width="20" data-height="20" style="color: white;"></span>
     </button>
 
     <!-- Admin Panel -->
     <div class="admin-panel" id="adminPanel">
         <div class="admin-header">
-            <h2 class="admin-title">관리자 패널 | Admin Panel</h2>
+            <h2 class="admin-title">Admin Panel</h2>
             <button class="admin-close" id="closeAdminPanel">&times;</button>
         </div>
 
         <!-- Login Form -->
         <div class="login-form" id="loginForm">
             <div class="form-group">
-                <label class="form-label">이메일 | Email</label>
-                <input type="email" class="form-input" id="adminEmail" value="one@naver.com">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" id="adminEmail" placeholder="Enter your email">
             </div>
             <div class="form-group">
-                <label class="form-label">비밀번호 | Password</label>
-                <input type="password" class="form-input" id="adminPassword" value="pass1234">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-input" id="adminPassword" placeholder="Enter your password">
             </div>
             <button class="btn btn-primary" id="loginBtn">
                 <span class="iconify" data-icon="solar:login-linear" data-width="16"></span>
-                로그인 | Login
+                Sign In
             </button>
+            <div id="loginError" style="color: var(--danger); font-size: 0.8rem; margin-top: 1rem; text-align: center; display: none;">
+                Invalid email or password
+            </div>
         </div>
 
         <!-- Admin Dashboard -->
@@ -903,19 +1004,19 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-value" id="totalMembers">0</div>
-                    <div class="stat-label">총 회원 | Total Members</div>
+                    <div class="stat-label">Total Members</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="totalVideos">0</div>
-                    <div class="stat-label">뮤직비디오 | Music Videos</div>
+                    <div class="stat-label">Music Videos</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="totalViews">0</div>
-                    <div class="stat-label">총 조회수 | Total Views</div>
+                    <div class="stat-label">Total Views</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value" id="totalLanguages">0</div>
-                    <div class="stat-label">언어 | Languages</div>
+                    <div class="stat-label">Languages</div>
                 </div>
             </div>
 
@@ -925,27 +1026,25 @@
             </div>
 
             <!-- Member Management -->
-            <div style="margin-bottom: 1.5rem;">
-                <h3 style="font-family: var(--font-display); font-size: 1rem; margin-bottom: 1rem; color: var(--accent-purple);">
-                    회원 관리 | Member Management
-                </h3>
+            <div class="members-section">
+                <h3 class="members-title">Member Management</h3>
                 
                 <div class="search-bar">
-                    <input type="text" class="search-input" id="searchMembers" placeholder="이름 또는 이메일 검색...">
+                    <input type="text" class="search-input" id="searchMembers" placeholder="Search by name or email...">
                     <button class="search-btn" id="searchBtn">
                         <span class="iconify" data-icon="solar:magnifer-linear" data-width="16"></span>
                     </button>
                 </div>
 
                 <div style="overflow-x: auto;">
-                    <table class="members-table" id="membersTable">
+                    <table class="members-table">
                         <thead>
                             <tr>
-                                <th>이름 | Name</th>
-                                <th>이메일 | Email</th>
-                                <th>언어 | Language</th>
-                                <th>가입일 | Joined</th>
-                                <th>상태 | Status</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Language</th>
+                                <th>Joined</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody id="membersBody">
@@ -956,35 +1055,35 @@
 
                 <button class="download-btn" id="downloadCSV">
                     <span class="iconify" data-icon="solar:download-linear" data-width="16"></span>
-                    회원 명단 다운로드 (CSV)
+                    Download Member List (CSV)
                 </button>
             </div>
 
             <!-- Upload Section (Admin Only) -->
             <div class="upload-section">
-                <h3 class="upload-title">뮤직비디오 업로드 | Upload Music Video</h3>
+                <h3 class="upload-title">Upload Music Video</h3>
                 <form id="uploadForm">
                     <div class="form-group">
-                        <label class="form-label">영상 제목 | Video Title</label>
+                        <label class="form-label">Video Title</label>
                         <input type="text" class="form-input" id="videoTitle" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">언어 | Language</label>
+                        <label class="form-label">Language</label>
                         <select class="form-input" id="videoLanguage" required>
-                            <option value="ko">한국어 | Korean</option>
-                            <option value="en">English | 영어</option>
-                            <option value="zh">中文 | 중국어</option>
-                            <option value="es">Español | 스페인어</option>
-                            <option value="ja">日本語 | 일본어</option>
+                            <option value="en">English</option>
+                            <option value="ko">Korean</option>
+                            <option value="zh">Chinese</option>
+                            <option value="es">Spanish</option>
+                            <option value="ja">Japanese</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">MP4 파일 | Video File</label>
+                        <label class="form-label">MP4 File</label>
                         <input type="file" class="form-input" id="videoFile" accept=".mp4,video/mp4" required>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <span class="iconify" data-icon="solar:upload-linear" data-width="16"></span>
-                        업로드 | Upload
+                        Upload Video
                     </button>
                 </form>
             </div>
@@ -997,18 +1096,21 @@
         <nav class="nav" id="nav">
             <a href="#" class="nav__logo">GCM</a>
             <div class="nav__links">
-                <a href="#home">홈 | Home</a>
-                <a href="#videos">뮤직비디오 | Videos</a>
-                <a href="#about">소개 | About</a>
+                <a href="#home">Home</a>
+                <a href="#videos">Videos</a>
+                <a href="#about">About</a>
             </div>
         </nav>
 
         <!-- Hero Section -->
         <section class="hero" id="home">
             <div class="hero__content">
-                <div class="hero__tag">글로벌 크리스천 뮤직 | Global Christian Music</div>
-                <h1 class="hero__title">음악으로 전하는<br>하나님의 사랑</h1>
-                <p class="hero__sub">전세계 그리스도인들이 함께 만들어가는 찬양 뮤직비디오 플랫폼</p>
+                <div class="hero__tag">Global Christian Music</div>
+                <h1 class="hero__title">
+                    Sharing God's Love<br>
+                    <span>Through Music</span>
+                </h1>
+                <p class="hero__sub">A global platform where believers from every nation come together to worship through music videos in their native languages.</p>
             </div>
         </section>
 
@@ -1016,18 +1118,15 @@
             <!-- Bible Verse -->
             <div class="verse-card">
                 <div class="verse-text">
-                    "내가 새 노래로 주께 노래하며 열 줄 비파로 주께 찬양하리이다"
+                    "Sing to the Lord a new song; sing to the Lord, all the earth."
                 </div>
-                <div class="verse-text" style="color: var(--text-muted); font-size: 1rem;">
-                    "I will sing a new song to You, O God; on a ten-stringed harp I will make music to You."
-                </div>
-                <div class="verse-ref">시편 144:9 | Psalm 144:9</div>
+                <div class="verse-ref">Psalm 96:1</div>
             </div>
 
             <!-- Videos Section -->
             <section class="section" id="videos">
-                <div class="section-tag">뮤직비디오 | MUSIC VIDEOS</div>
-                <h2 class="section-title">전세계 찬양 영상</h2>
+                <div class="section-tag">Music Videos</div>
+                <h2 class="section-title">Worship in Every Language</h2>
                 
                 <div class="video-grid" id="videoGrid">
                     <!-- Videos will be loaded here -->
@@ -1036,11 +1135,10 @@
 
             <!-- About Section -->
             <section class="section" id="about">
-                <div class="section-tag">소개 | ABOUT</div>
-                <h2 class="section-title">하나님을 찬양하는<br>글로벌 커뮤니티</h2>
-                <p style="color: var(--text-muted); line-height: 1.8; max-width: 800px;">
-                    GCM(Global Christian Music)은 전세계 그리스도인들이 함께 만들어가는 찬양 뮤직비디오 플랫폼입니다. 
-                    다양한 언어와 문화의 찬양을 통해 하나님의 사랑을 나누고, 음악으로 하나되는 공동체를 꿈꿉니다.
+                <div class="section-tag">About</div>
+                <h2 class="section-title">A Global Community<br>United in Worship</h2>
+                <p style="color: var(--text-muted); line-height: 1.9; max-width: 800px; font-weight: 300; letter-spacing: 0.02em;">
+                    GCM (Global Christian Music) is a platform where Christians from around the world share worship music videos. Through diverse languages and cultures, we spread God's love and dream of a community united through music. Every video uploaded represents a soul praising God in their native tongue, creating a beautiful tapestry of global worship.
                 </p>
             </section>
         </div>
@@ -1051,12 +1149,12 @@
                 <div class="footer__inner">
                     <div>
                         <span class="footer__logo">GCM</span>
-                        <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 0.5rem;">Global Christian Music</p>
+                        <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 0.8rem; font-weight: 300;">Global Christian Music</p>
                     </div>
                 </div>
                 <div class="footer__bottom">
-                    <span>© 2025 GCM - All Glory to God</span>
-                    <span>Psalm 150:6 - "Let everything that has breath praise the Lord"</span>
+                    <span>© 2025 GCM — All Glory to God</span>
+                    <span>Psalm 150:6 — Let everything that has breath praise the Lord</span>
                 </div>
             </div>
         </footer>
@@ -1087,7 +1185,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loading').classList.add('fade-out');
-            }, 1000);
+            }, 1500);
         });
 
         // Scroll Progress
@@ -1105,7 +1203,7 @@
         // Navigation Scroll Effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
+            nav.classList.toggle('scrolled', window.scrollY > 100);
         });
 
         // Admin Panel Controls
@@ -1115,27 +1213,57 @@
 
         adminLoginBtn.addEventListener('click', () => {
             adminPanel.classList.add('active');
+            // Reset login form
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('adminDashboard').classList.remove('active');
+            document.getElementById('adminEmail').value = '';
+            document.getElementById('adminPassword').value = '';
+            document.getElementById('loginError').style.display = 'none';
         });
 
         closeAdminPanel.addEventListener('click', () => {
             adminPanel.classList.remove('active');
         });
 
-        // Login Function
+        // Login Function with Authentication
+        const loginBtn = document.getElementById('loginBtn');
         const loginForm = document.getElementById('loginForm');
         const adminDashboard = document.getElementById('adminDashboard');
-        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
 
         loginBtn.addEventListener('click', () => {
             const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
 
+            // Hardcoded credentials for demo
             if (email === 'one@naver.com' && password === 'pass1234') {
                 loginForm.style.display = 'none';
                 adminDashboard.classList.add('active');
+                loginError.style.display = 'none';
                 loadAdminData();
+                
+                // Animate dashboard entrance
+                gsap.from('.admin-dashboard > *', {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    ease: 'power2.out'
+                });
             } else {
-                alert('잘못된 로그인 정보입니다. | Invalid login credentials.');
+                loginError.style.display = 'block';
+                gsap.to(loginError, {
+                    x: [-10, 10, -10, 10, 0],
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+            }
+        });
+
+        // Allow Enter key for login
+        document.getElementById('adminPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                loginBtn.click();
             }
         });
 
@@ -1146,18 +1274,20 @@
             initChart();
         }
 
-        // Mock Members Data
+        // Mock Members Data (Enhanced)
         const members = [
-            { name: 'John Smith', email: 'john@example.com', language: 'English', joined: '2025-01-15', status: 'Active' },
-            { name: 'Maria Garcia', email: 'maria@example.com', language: 'Spanish', joined: '2025-01-20', status: 'Active' },
-            { name: '김민수', email: 'minsu@example.com', language: 'Korean', joined: '2025-02-01', status: 'Active' },
-            { name: 'Yuki Tanaka', email: 'yuki@example.com', language: 'Japanese', joined: '2025-02-10', status: 'Active' },
-            { name: 'Sarah Chen', email: 'sarah@example.com', language: 'Chinese', joined: '2025-02-15', status: 'Active' },
-            { name: 'David Kim', email: 'david@example.com', language: 'Korean', joined: '2025-02-20', status: 'Active' },
-            { name: 'Anna Lee', email: 'anna@example.com', language: 'English', joined: '2025-03-01', status: 'Active' },
-            { name: '박지성', email: 'jisung@example.com', language: 'Korean', joined: '2025-03-05', status: 'Active' },
-            { name: 'Emma Wilson', email: 'emma@example.com', language: 'English', joined: '2025-03-10', status: 'Active' },
-            { name: 'Carlos Rodriguez', email: 'carlos@example.com', language: 'Spanish', joined: '2025-03-12', status: 'Active' }
+            { name: 'John Smith', email: 'john.smith@example.com', language: 'English', joined: '2025-01-15', status: 'Active' },
+            { name: 'Maria Garcia', email: 'maria.garcia@example.com', language: 'Spanish', joined: '2025-01-20', status: 'Active' },
+            { name: 'Min-su Kim', email: 'minsu.kim@example.com', language: 'Korean', joined: '2025-02-01', status: 'Active' },
+            { name: 'Yuki Tanaka', email: 'yuki.tanaka@example.com', language: 'Japanese', joined: '2025-02-10', status: 'Active' },
+            { name: 'Sarah Chen', email: 'sarah.chen@example.com', language: 'Chinese', joined: '2025-02-15', status: 'Active' },
+            { name: 'David Kim', email: 'david.kim@example.com', language: 'Korean', joined: '2025-02-20', status: 'Active' },
+            { name: 'Anna Lee', email: 'anna.lee@example.com', language: 'English', joined: '2025-03-01', status: 'Active' },
+            { name: 'Ji-sung Park', email: 'jisung.park@example.com', language: 'Korean', joined: '2025-03-05', status: 'Active' },
+            { name: 'Emma Wilson', email: 'emma.wilson@example.com', language: 'English', joined: '2025-03-10', status: 'Active' },
+            { name: 'Carlos Rodriguez', email: 'carlos.rodriguez@example.com', language: 'Spanish', joined: '2025-03-12', status: 'Active' },
+            { name: 'Wei Zhang', email: 'wei.zhang@example.com', language: 'Chinese', joined: '2025-03-15', status: 'Active' },
+            { name: 'Sophie Martin', email: 'sophie.martin@example.com', language: 'French', joined: '2025-03-18', status: 'Active' }
         ];
 
         function loadMembers() {
@@ -1211,6 +1341,30 @@
             });
         });
 
+        // Real-time search as you type
+        document.getElementById('searchMembers').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = members.filter(m => 
+                m.name.toLowerCase().includes(searchTerm) || 
+                m.email.toLowerCase().includes(searchTerm)
+            );
+            
+            const tbody = document.getElementById('membersBody');
+            tbody.innerHTML = '';
+            
+            filtered.forEach(member => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${member.name}</td>
+                    <td>${member.email}</td>
+                    <td>${member.language}</td>
+                    <td>${member.joined}</td>
+                    <td style="color: var(--success);">${member.status}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        });
+
         // Download CSV
         document.getElementById('downloadCSV').addEventListener('click', () => {
             let csv = 'Name,Email,Language,Joined,Status\n';
@@ -1240,12 +1394,17 @@
                 data: {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
                     datasets: [{
-                        label: '신규 회원 | New Members',
-                        data: [5, 8, 12, 15, 20, 25],
+                        label: 'New Members',
+                        data: [8, 12, 18, 25, 32, 40],
                         borderColor: '#9d4edd',
-                        backgroundColor: 'rgba(157,78,221,0.1)',
+                        backgroundColor: 'rgba(157,78,221,0.05)',
                         tension: 0.4,
-                        fill: true
+                        fill: true,
+                        borderWidth: 1,
+                        pointBackgroundColor: '#d4af37',
+                        pointBorderColor: 'transparent',
+                        pointRadius: 4,
+                        pointHoverRadius: 6
                     }]
                 },
                 options: {
@@ -1254,17 +1413,25 @@
                     plugins: {
                         legend: {
                             labels: {
-                                color: '#a0a0a0'
+                                color: '#b0b0b0',
+                                font: {
+                                    family: "'Montserrat', sans-serif",
+                                    weight: 300
+                                }
                             }
                         }
                     },
                     scales: {
                         y: {
                             grid: {
-                                color: 'rgba(255,255,255,0.05)'
+                                color: 'rgba(255,255,255,0.03)'
                             },
                             ticks: {
-                                color: '#a0a0a0'
+                                color: '#b0b0b0',
+                                font: {
+                                    family: "'Montserrat', sans-serif",
+                                    weight: 300
+                                }
                             }
                         },
                         x: {
@@ -1272,7 +1439,11 @@
                                 display: false
                             },
                             ticks: {
-                                color: '#a0a0a0'
+                                color: '#b0b0b0',
+                                font: {
+                                    family: "'Montserrat', sans-serif",
+                                    weight: 300
+                                }
                             }
                         }
                     }
@@ -1282,12 +1453,40 @@
 
         // Video Storage
         let videos = JSON.parse(localStorage.getItem('gcmVideos') || '[]');
-        let viewStats = JSON.parse(localStorage.getItem('gcmViewStats') || '{"views":0,"languages":{}}');
+        let viewStats = JSON.parse(localStorage.getItem('gcmViewStats') || '{"views":247}');
 
         // Display Videos
         function displayVideos() {
             const grid = document.getElementById('videoGrid');
             grid.innerHTML = '';
+
+            if (videos.length === 0) {
+                // Show sample videos if none uploaded
+                videos = [
+                    {
+                        id: 1,
+                        title: "How Great Is Our God",
+                        language: "English",
+                        url: "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                        date: "2025-03-15"
+                    },
+                    {
+                        id: 2,
+                        title: "주는 나의 목자",
+                        language: "Korean",
+                        url: "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                        date: "2025-03-14"
+                    },
+                    {
+                        id: 3,
+                        title: "Grande es tu fidelidad",
+                        language: "Spanish",
+                        url: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+                        date: "2025-03-13"
+                    }
+                ];
+                localStorage.setItem('gcmVideos', JSON.stringify(videos));
+            }
 
             videos.forEach((video, index) => {
                 const card = document.createElement('div');
@@ -1347,6 +1546,16 @@
             modal.classList.remove('active');
         });
 
+        // Click outside modal to close
+        document.getElementById('videoModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('videoModal')) {
+                const modalVideo = document.getElementById('modalVideo');
+                modalVideo.pause();
+                modalVideo.src = '';
+                document.getElementById('videoModal').classList.remove('active');
+            }
+        });
+
         // Upload Form (Admin Only)
         document.getElementById('uploadForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1364,7 +1573,7 @@
                 title,
                 language,
                 url,
-                date: new Date().toLocaleDateString(),
+                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-'),
                 fileName: file.name
             };
             
@@ -1373,7 +1582,14 @@
             
             displayVideos();
             document.getElementById('uploadForm').reset();
-            alert('Video uploaded successfully!');
+            
+            // Show success message
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="iconify" data-icon="solar:check-circle-bold" data-width="16"></span> Uploaded!';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
             
             if (adminDashboard.classList.contains('active')) {
                 loadStats();
@@ -1385,34 +1601,34 @@
 
         // GSAP Animations
         gsap.from('.hero__tag', {
-            y: 30,
+            y: 40,
             opacity: 0,
-            duration: 1,
-            ease: 'power2.out'
+            duration: 1.2,
+            ease: 'power3.out'
         });
 
         gsap.from('.hero__title', {
-            y: 50,
+            y: 60,
             opacity: 0,
-            duration: 1,
-            delay: 0.2,
-            ease: 'power2.out'
+            duration: 1.2,
+            delay: 0.3,
+            ease: 'power3.out'
         });
 
         gsap.from('.hero__sub', {
-            y: 30,
+            y: 40,
             opacity: 0,
-            duration: 1,
-            delay: 0.4,
-            ease: 'power2.out'
+            duration: 1.2,
+            delay: 0.6,
+            ease: 'power3.out'
         });
 
         // Scroll Animations
         gsap.utils.toArray('.section').forEach(section => {
             gsap.from(section, {
-                y: 50,
+                y: 60,
                 opacity: 0,
-                duration: 1,
+                duration: 1.2,
                 scrollTrigger: {
                     trigger: section,
                     start: 'top 80%',
@@ -1424,10 +1640,10 @@
 
         gsap.utils.toArray('.video-card').forEach((card, i) => {
             gsap.from(card, {
-                y: 50,
+                y: 60,
                 opacity: 0,
-                duration: 0.8,
-                delay: i * 0.1,
+                duration: 1,
+                delay: i * 0.15,
                 scrollTrigger: {
                     trigger: card,
                     start: 'top 90%'
@@ -1435,40 +1651,45 @@
             });
         });
 
-        // 3D Scene
+        // Enhanced 3D Scene
         function init3D() {
             const container = document.getElementById('canvas-container');
             
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "high-performance" });
             
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             container.appendChild(renderer.domElement);
             
-            // Particles
+            // Main Particle System
             const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 2000;
+            const particlesCount = 4000;
             
             const posArray = new Float32Array(particlesCount * 3);
             const colorArray = new Float32Array(particlesCount * 3);
             
             for(let i = 0; i < particlesCount * 3; i += 3) {
-                // Position
-                const radius = 8;
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos(2 * Math.random() - 1);
+                // Spiral formation
+                const radius = 12;
+                const spiralFactor = 5;
+                const i3 = i / 3;
+                const t = (i3 / particlesCount) * Math.PI * 10;
                 
-                posArray[i] = radius * Math.sin(phi) * Math.cos(theta);
-                posArray[i + 1] = radius * Math.sin(phi) * Math.sin(theta);
-                posArray[i + 2] = radius * Math.cos(phi);
+                const x = Math.sin(t) * (radius - t * 0.3);
+                const y = Math.cos(t * 0.5) * 3;
+                const z = Math.cos(t) * (radius - t * 0.3);
                 
-                // Color
+                posArray[i] = x;
+                posArray[i + 1] = y;
+                posArray[i + 2] = z;
+                
+                // Gradient colors from gold to purple
                 const color = new THREE.Color().setHSL(
-                    Math.random() * 0.2 + 0.7, // Purple-blue range
+                    0.7 + Math.sin(t) * 0.2, // Purple-blue range
                     0.8,
-                    0.5
+                    0.5 + Math.sin(t * 2) * 0.2
                 );
                 
                 colorArray[i] = color.r;
@@ -1480,18 +1701,46 @@
             particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
             
             const particlesMaterial = new THREE.PointsMaterial({
-                size: 0.05,
+                size: 0.08,
                 vertexColors: true,
                 transparent: true,
-                blending: THREE.AdditiveBlending
+                blending: THREE.AdditiveBlending,
+                map: createParticleTexture()
             });
             
             const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
             scene.add(particlesMesh);
             
-            camera.position.z = 15;
+            // Create a second particle system for background
+            const bgParticlesGeometry = new THREE.BufferGeometry();
+            const bgPosArray = new Float32Array(2000 * 3);
             
-            // Mouse movement
+            for(let i = 0; i < 2000 * 3; i += 3) {
+                const r = 20;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                
+                bgPosArray[i] = r * Math.sin(phi) * Math.cos(theta);
+                bgPosArray[i + 1] = r * Math.sin(phi) * Math.sin(theta);
+                bgPosArray[i + 2] = r * Math.cos(phi);
+            }
+            
+            bgParticlesGeometry.setAttribute('position', new THREE.BufferAttribute(bgPosArray, 3));
+            
+            const bgParticlesMaterial = new THREE.PointsMaterial({
+                size: 0.03,
+                color: 0x9d4edd,
+                transparent: true,
+                opacity: 0.3,
+                blending: THREE.AdditiveBlending
+            });
+            
+            const bgParticlesMesh = new THREE.Points(bgParticlesGeometry, bgParticlesMaterial);
+            scene.add(bgParticlesMesh);
+            
+            camera.position.z = 25;
+            
+            // Mouse movement for parallax
             let mouseX = 0;
             let mouseY = 0;
             
@@ -1501,15 +1750,29 @@
             });
             
             // Animation
+            let clock = new THREE.Clock();
+            
             function animate() {
                 requestAnimationFrame(animate);
                 
-                particlesMesh.rotation.y += 0.0005;
-                particlesMesh.rotation.x += 0.0003;
+                const delta = clock.getDelta();
+                const elapsedTime = performance.now() * 0.001;
+                
+                // Main particle rotation
+                particlesMesh.rotation.y += 0.0003;
+                particlesMesh.rotation.x += 0.0002;
+                
+                // Background particle rotation (opposite direction)
+                bgParticlesMesh.rotation.y -= 0.0002;
+                bgParticlesMesh.rotation.z += 0.0001;
                 
                 // Subtle mouse parallax
-                particlesMesh.rotation.x += mouseY * 0.0005;
                 particlesMesh.rotation.y += mouseX * 0.0005;
+                particlesMesh.rotation.x += mouseY * 0.0003;
+                
+                // Pulsing effect
+                const scale = 1 + Math.sin(elapsedTime * 2) * 0.02;
+                particlesMesh.scale.set(scale, scale, scale);
                 
                 renderer.render(scene, camera);
             }
@@ -1524,11 +1787,29 @@
             });
         }
 
+        // Create particle texture
+        function createParticleTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.beginPath();
+            ctx.arc(16, 16, 8, 0, Math.PI * 2);
+            ctx.fillStyle = 'white';
+            ctx.shadowColor = 'rgba(212,175,55,0.5)';
+            ctx.shadowBlur = 10;
+            ctx.fill();
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            return texture;
+        }
+
         // Initialize 3D
         init3D();
 
         // Magnetic effect for buttons
-        document.querySelectorAll('.btn, .video-btn').forEach(btn => {
+        document.querySelectorAll('.btn, .video-btn, .nav__links a').forEach(btn => {
             btn.addEventListener('mousemove', (e) => {
                 const rect = btn.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
@@ -1552,10 +1833,31 @@
             });
         });
 
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
         // Handle reduced motion preference
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             gsap.globalTimeline.clear();
         }
+
+        // Admin panel background click to close
+        adminPanel.addEventListener('click', (e) => {
+            if (e.target === adminPanel) {
+                adminPanel.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
