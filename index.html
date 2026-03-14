@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글로벌 크리스천 뮤직비디오 | Global Christian Music</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <style>
+        :root {
+            --bg: #060606;
+            --bg-alt: #0d0d0d;
+            --glass: rgba(255,255,255,0.03);
+            --glass-border: rgba(255,255,255,0.06);
+            --text: #f0f0f0;
+            --text-muted: #777;
+            --text-dim: #444;
+            --accent: #c8ff00;
+            --accent2: #ff0040;
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --container: 1400px;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.012) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; z-index: 999;
+            height: 2px; background: var(--accent); width: 100%;
+            transform-origin: left; transform: scaleX(0);
+            box-shadow: 0 0 8px var(--accent);
+        }
+        
+        /* Grain Effect */
+        .grain {
+            position: fixed; inset: 0; z-index: 9000; pointer-events: none; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat; background-size: 180px;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.2rem clamp(1.25rem, 4vw, 2.5rem);
+            transition: background 0.4s, backdrop-filter 0.4s;
+        }
+        
+        .nav.scrolled {
+            background: rgba(6,6,6,0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        
+        .nav__logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+        }
+        
+        .nav__logo span { color: var(--accent); }
+        
+        .nav__links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav__links a {
+            font-size: 0.78rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            transition: color 0.3s;
+            position: relative;
+            text-decoration: none;
+        }
+        
+        .nav__links a:hover { color: var(--text); }
+        
+        .nav__links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav__links a:hover::after { width: 100%; }
+        
+        .nav__toggle {
+            display: none;
+            width: 24px;
+            height: 16px;
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .nav__toggle span {
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: var(--text);
+            position: absolute;
+            left: 0;
+            transition: 0.3s;
+        }
+        
+        .nav__toggle span:first-child { top: 0; }
+        .nav__toggle span:last-child { bottom: 0; }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem clamp(1.25rem, 4vw, 2.5rem) 4rem;
+        }
+        
+        .hero__tag {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            background: rgba(6,6,6,0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(200,255,0,0.12);
+        }
+        
+        .hero__title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero__title em {
+            color: var(--accent);
+            font-style: italic;
+        }
+        
+        .hero__sub {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Section Styles */
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: clamp(4rem, 8vw, 6rem) 0;
+        }
+        
+        .section-tag {
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-tag::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .admin-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .form-input {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 6px;
+            padding: 0.8rem 1rem;
+            color: var(--text);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .form-input[type="file"] {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .form-input[type="file"]::-webkit-file-upload-button {
+            background: var(--accent);
+            border: none;
+            color: var(--bg);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-right: 1rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 0 30px rgba(200,255,0,0.35);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .video-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s;
+        }
+        
+        .video-card:hover {
+            border-color: rgba(200,255,0,0.3);
+            transform: translateY(-4px);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+        }
+        
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-info {
+            padding: 1.5rem;
+        }
+        
+        .video-title {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        
+        .video-date {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+        
+        .video-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .video-btn {
+            flex: 1;
+            padding: 0.5rem;
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            border-radius: 4px;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .video-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        .video-btn.play-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: rgba(6,6,6,0.95);
+            backdrop-filter: blur(20px);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            width: 90%;
+            max-width: 1000px;
+            background: var(--bg-alt);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .modal-close:hover {
+            color: var(--accent);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-video video {
+            width: 100%;
+            max-height: 70vh;
+            border-radius: 4px;
+        }
+        
+        /* Metrics */
+        .metrics__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .metric__num {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--accent);
+            text-shadow: 0 0 30px rgba(200,255,0,0.2);
+            display: block;
+        }
+        
+        .metric__label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            margin-top: 0.3rem;
+            display: block;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-alt);
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        .footer__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer__logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+        }
+        
+        .footer__logo span { color: var(--accent); }
+        
+        .footer__tagline {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 0.3rem;
+        }
+        
+        .footer__bottom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--glass-border);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav__links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(6,6,6,0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+                z-index: 101;
+            }
+            
+            .nav__links.active {
+                display: flex;
+            }
+            
+            .nav__links a {
+                font-size: 1.2rem;
+                color: var(--text);
+            }
+            
+            .nav__toggle {
+                display: block;
+                z-index: 102;
+            }
+            
+            .nav__toggle.active span:first-child {
+                top: 50%;
+                transform: rotate(45deg);
+            }
+            
+            .nav__toggle.active span:last-child {
+                bottom: 50%;
+                transform: rotate(-45deg);
+            }
+            
+            .metrics__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero__title {
+                font-size: clamp(2rem, 6vw, 3rem);
+            }
+            
+            .admin-panel {
+                padding: 1.5rem;
+            }
+            
+            .footer__inner {
+                flex-direction: column;
+            }
+            
+            .footer__bottom {
+                flex-direction: column;
+                gap: 0.3rem;
+                text-align: center;
+            }
+        }
+        
+        /* Bible Verse */
+        .verse {
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 2px solid var(--accent);
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .verse small {
+            display: block;
+            margin-top: 1rem;
+            color: var(--accent);
+            font-style: normal;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="grain"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav__logo">글로벌<span>크리스천</span></a>
+        <div class="nav__links" id="navLinks">
+            <a href="#home">홈 | Home</a>
+            <a href="#videos">뮤직비디오 | Videos</a>
+            <a href="#admin">관리자 | Admin</a>
+            <a href="#about">소개 | About</a>
+        </div>
+        <button class="nav__toggle" id="navToggle">
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero__tag">글로벌 크리스천 뮤직비디오 | Global Christian Music</div>
+        <h1 class="hero__title">음악으로 전하는 <em>하나님의 사랑</em><br>Sharing God's Love Through Music</h1>
+        <p class="hero__sub">전세계 그리스도인들이 함께 만드는 찬양 뮤직비디오 | Christian music videos created by believers worldwide</p>
+    </section>
+
+    <div class="container">
+        <!-- Bible Verse -->
+        <div class="verse">
+            "내가 새 노래로 주께 노래하며 열 줄 비파로 주께 찬양하리이다"
+            <br>
+            "I will sing a new song to You, O God; on a ten-stringed harp I will make music to You."
+            <small>시편 144:9 | Psalm 144:9</small>
+        </div>
+
+        <!-- Admin Panel -->
+        <section class="section" id="admin">
+            <div class="section-tag">관리자 | ADMIN</div>
+            <h2 class="section-title">뮤직비디오 업로드<br>Upload Music Video</h2>
+            
+            <div class="admin-panel">
+                <h3 class="admin-title">새 영상 업로드 | Upload New Video</h3>
+                <form id="uploadForm">
+                    <div class="form-group">
+                        <label class="form-label">영상 제목 | Video Title</label>
+                        <input type="text" class="form-input" id="videoTitle" placeholder="예) 주는 나의 목자 | The Lord is My Shepherd" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">언어 | Language</label>
+                        <select class="form-input" id="videoLanguage" required>
+                            <option value="">선택하세요 | Select</option>
+                            <option value="ko">한국어 | Korean</option>
+                            <option value="en">English | 영어</option>
+                            <option value="zh">中文 | 중국어</option>
+                            <option value="es">Español | 스페인어</option>
+                            <option value="other">기타 | Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">MP4 영상 파일 | Video File (MP4 only)</label>
+                        <input type="file" class="form-input" id="videoFile" accept=".mp4,video/mp4" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">설명 | Description (선택사항 | Optional)</label>
+                        <textarea class="form-input" id="videoDescription" rows="3" placeholder="영상에 대한 간단한 설명..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="iconify" data-icon="solar:upload-linear" data-width="16"></span>
+                        업로드 | Upload
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Videos Section -->
+        <section class="section" id="videos">
+            <div class="section-tag">뮤직비디오 | MUSIC VIDEOS</div>
+            <h2 class="section-title">전세계 찬양 영상<br>Worship Videos Worldwide</h2>
+            
+            <div class="video-grid" id="videoGrid">
+                <!-- Videos will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Metrics -->
+        <div class="metrics__grid">
+            <div class="metric">
+                <span class="metric__num" id="videoCount">0</span>
+                <span class="metric__label">뮤직비디오 | Videos</span>
+            </div>
+            <div class="metric">
+                <span class="metric__num" id="languageCount">0</span>
+                <span class="metric__label">언어 | Languages</span>
+            </div>
+            <div class="metric">
+                <span class="metric__num" id="viewCount">0</span>
+                <span class="metric__label">조회수 | Views</span>
+            </div>
+            <div class="metric">
+                <span class="metric__num" id="countryCount">0</span>
+                <span class="metric__label">국가 | Countries</span>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <div class="section-tag">소개 | ABOUT</div>
+            <h2 class="section-title">하나님을 찬양하는<br>글로벌 커뮤니티</h2>
+            <p style="color: var(--text-muted); line-height: 1.8; max-width: 800px;">
+                이곳은 전세계 그리스도인들이 함께 만들어가는 찬양 뮤직비디오 플랫폼입니다. 
+                다양한 언어와 문화의 찬양을 통해 하나님의 사랑을 나눕니다.<br><br>
+                This is a platform for Christian music videos created by believers worldwide. 
+                We share God's love through worship songs in various languages and cultures.
+            </p>
+        </section>
+    </div>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Video Title</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-video">
+                    <video id="modalVideo" controls style="width: 100%;">
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div>
+                    <span class="footer__logo">글로벌<span>크리스천</span></span>
+                    <p class="footer__tagline">Global Christian Music Video</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <span>© 2025 글로벌 크리스천 뮤직비디오 | Global Christian Music</span>
+                <span>모든 영광을 하나님께 | All Glory to God</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        // Initialize GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scroll Progress
+        gsap.to('#scrollProgress', {
+            scaleX: 1,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: true
+            }
+        });
+
+        // Navigation
+        const nav = document.getElementById('nav');
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+
+        // Video Storage
+        let videos = JSON.parse(localStorage.getItem('christianVideos') || '[]');
+        let viewStats = JSON.parse(localStorage.getItem('viewStats') || '{"views":0,"languages":{},"countries":{}}');
+
+        // Update metrics
+        function updateMetrics() {
+            document.getElementById('videoCount').textContent = videos.length;
+            
+            const languages = new Set(videos.map(v => v.language));
+            document.getElementById('languageCount').textContent = languages.size;
+            
+            document.getElementById('viewCount').textContent = viewStats.views;
+            
+            // Simulate countries (you can expand this based on language)
+            document.getElementById('countryCount').textContent = languages.size + 5;
+        }
+
+        // Display videos
+        function displayVideos() {
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = '';
+
+            videos.forEach((video, index) => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                card.innerHTML = `
+                    <div class="video-wrapper">
+                        <video src="${video.url}" preload="metadata"></video>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">${video.title}</h3>
+                        <div class="video-date">${video.date} | ${video.language}</div>
+                        <div class="video-actions">
+                            <button class="video-btn play-btn" onclick="playVideo(${index})">
+                                <span class="iconify" data-icon="solar:play-linear" data-width="14"></span> 재생 | Play
+                            </button>
+                            <a href="${video.url}" download class="video-btn">
+                                <span class="iconify" data-icon="solar:download-linear" data-width="14"></span> 다운로드
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Play video in modal
+        function playVideo(index) {
+            const video = videos[index];
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            modalTitle.textContent = video.title;
+            modalVideo.src = video.url;
+            modal.classList.add('active');
+            modalVideo.play();
+            
+            // Update view stats
+            viewStats.views++;
+            localStorage.setItem('viewStats', JSON.stringify(viewStats));
+            updateMetrics();
+        }
+
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', () => {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.pause();
+            modalVideo.src = '';
+            modal.classList.remove('active');
+        });
+
+        // Handle file upload
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('videoTitle').value;
+            const language = document.getElementById('videoLanguage').value;
+            const description = document.getElementById('videoDescription').value;
+            const fileInput = document.getElementById('videoFile');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a video file');
+                return;
+            }
+
+            // Create video URL
+            const url = URL.createObjectURL(file);
+
+            // Save video data
+            const video = {
+                id: Date.now(),
+                title,
+                language,
+                description,
+                url,
+                date: new Date().toLocaleDateString(),
+                fileName: file.name
+            };
+
+            videos.push(video);
+            localStorage.setItem('christianVideos', JSON.stringify(videos));
+
+            // Update UI
+            displayVideos();
+            updateMetrics();
+
+            // Reset form
+            document.getElementById('uploadForm').reset();
+            alert('Video uploaded successfully!');
+        });
+
+        // Initial load
+        displayVideos();
+        updateMetrics();
+
+        // GSAP Animations
+        gsap.from('.hero__tag', {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.out'
+        });
+
+        gsap.from('.hero__title', {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            delay: 0.2,
+            ease: 'power2.out'
+        });
+
+        gsap.from('.hero__sub', {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            delay: 0.4,
+            ease: 'power2.out'
+        });
+
+        // Scroll animations
+        gsap.utils.toArray('.section').forEach(section => {
+            gsap.from(section, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    end: 'top 50%',
+                    scrub: 1
+                }
+            });
+        });
+
+        gsap.utils.toArray('.video-card').forEach((card, i) => {
+            gsap.from(card, {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                delay: i * 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%'
+                }
+            });
+        });
+
+        // Magnetic effect for buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, {
+                    x: x * 0.2,
+                    y: y * 0.2,
+                    duration: 0.4,
+                    ease: 'power2.out'
+                });
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.6,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+            });
+        });
+
+        // Handle reduced motion preference
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            gsap.globalTimeline.clear();
+        }
+    </script>
+</body>
+</html>
